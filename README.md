@@ -6,4 +6,4 @@
 
 4 - npm run serve
 
-P.S o front espera consumir a api em http://localhost:8000, qualquer alteração consultar src/config.js
+P.S o front espera consumir a api em http://localhost:8000, qualquer alteração configurar src/config.js
