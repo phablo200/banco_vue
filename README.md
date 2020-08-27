@@ -1,24 +1,9 @@
-# boleto-front
+1 - git clone https://github.com/phablo200/banco_vue.git
 
-## Project setup
-```
-npm install
-```
+2 - cd banco_vue
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+3 - npm install
 
-### Compiles and minifies for production
-```
-npm run build
-```
+4 - npm run serve
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+P.S o front espera consumir a api em http://localhost:8000, qualquer alteração consultar src/config.js
