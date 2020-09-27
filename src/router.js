@@ -7,9 +7,7 @@ import Saldo from './views/movimentos/Saldo';
 import Deposito from './views/movimentos/Deposito';
 import Extrato from './views/movimentos/Extrato';
 
-
 Vue.use(Router);
-
 const router = new Router({
     mode: 'history',
     
@@ -20,14 +18,12 @@ const router = new Router({
             name: 'login',
             meta: 'login',
         },
-
         {
             path: '/dashboard',
             component: Dashboard,
             name: 'dashboard',
             meta: 'dashboard',
         },
-
         {
             path: '/saldo',
             component: Saldo,
@@ -55,5 +51,4 @@ const router = new Router({
         }
     ]
 });
-
 export default router;

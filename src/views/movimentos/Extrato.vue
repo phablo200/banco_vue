@@ -1,3 +1,4 @@
+
 <template>
      <div class="box-table">
         
@@ -65,17 +66,19 @@ export default {
                 data_hora: ''
             });
             return extrato;
+        },
+        errors () {
+            return this.$store.getters['errors'] || {};
         }
     },
     methods: {
     	async getExtrato () {
-    		const loader=await this.$loading.show({
-	            container: this.fullPage ? null : this.$refs.formContainer,
-	            canCancel: true,
-	            onCancel: this.onCancel,
-	        });
+    		this.showLoading();
             await this.$store.dispatch('movimentos/extrato');
-            loader.hide();
+            if (Object.keys(this.errors).length) {
+                
+            }
+            this.hideLoading();
         },
     }
 }

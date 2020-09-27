@@ -186,27 +186,18 @@ export default {
     },
     methods: {
     	async getSaldo () {
-    		const loader=await this.$loading.show({
-	            container: this.fullPage ? null : this.$refs.formContainer,
-	            canCancel: true,
-	            onCancel: this.onCancel,
-	        });
-
+    		this.showLoading();
             await this.$store.dispatch('movimentos/saldo');
-            loader.hide();
+            this.hideLoading();
         },
     	btnLimpar () {
     		this.movimento['valor'] = null;
     	},
     	async btnProximo () {
-    		const loader=await this.$loading.show({
-                container: this.fullPage ? null : this.$refs.formContainer,
-                canCancel: true,
-                onCancel: this.onCancel,
-            });
+    		this.showLoading();
             await this.$store.dispatch('movimentos/saque', this.movimento);
-            loader.hide();
-
+			this.hideLoading();
+			
             if (this.errors && this.errors.valor) {
             	return;
             }
@@ -215,14 +206,9 @@ export default {
     	},
 
     	async btnSaque () {
-    		const loader=await this.$loading.show({
-                container: this.fullPage ? null : this.$refs.formContainer,
-                canCancel: true,
-                onCancel: this.onCancel,
-            });
-
+    		this.showLoading();
             await this.$store.dispatch('movimentos/saque', this.movimento);
-            loader.hide();
+            this.hideLoading();
             
             if (this.errors.password) {
             	return;

@@ -1,10 +1,11 @@
-import service from '../../../services/generic.services';
+import ApiService from '../../../services/api.service';
 
 export default {
     async auth ({ commit }, payload) {
-        const resp = await service
-            .initialize('login')
-            .store(payload);
+        const resp = await ApiService.post(
+            'login',
+            payload
+        );
 
         if (resp) {
             await commit('AUTH', resp.data.data);

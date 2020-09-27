@@ -54,15 +54,10 @@ export default {
 
     methods: {
     	async getSaldo () {
-    		const loader=await this.$loading.show({
-	            container: this.fullPage ? null : this.$refs.formContainer,
-	            canCancel: true,
-	            onCancel: this.onCancel,
-	        });
-
+    		this.showLoading();
             await this.$store.dispatch('movimentos/saldo');
             this.saldo = this.$store.getters['movimentos/saldo'];
-            loader.hide();
+			this.hideLoading();
         },
 		btnSair () {
 			this.$router.push({

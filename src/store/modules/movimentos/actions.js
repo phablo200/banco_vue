@@ -1,10 +1,12 @@
-import genericService from '../../../services/generic.services';
+import ApiService from '../../../services/api.service';
 
 export default {
     async extrato ({ commit }, payload) {
-        const resp = await genericService
-            .initialize('movimentos/extrato')
-            .fetch(payload);
+        const resp = await ApiService.fetch(
+            'movimentos/extrato', 
+            payload
+        );
+        if (!resp) return;
 
         await commit(
             'SET_EXTRATO', 
@@ -12,9 +14,11 @@ export default {
         );
     },
     async saldo ({ commit }, payload) {
-        const resp = await genericService
-            .initialize('movimentos/saldo')
-            .fetch(payload);
+        const resp = await ApiService.fetch(
+            'movimentos/saldo',
+            payload
+        );
+        if (!resp) return;
 
         await commit(
             'SET_SALDO', 
@@ -22,26 +26,27 @@ export default {
         );
     },
     async saque ({ commit }, payload) {
-        const resp = await genericService
-            .initialize('movimentos/saque')
-            .store(payload);
+        const resp = await ApiService.post(
+            'movimentos/saque',
+            payload
+        );
+        if (!resp) return;
 
-        if (resp) {
-            await commit(
-                'SET_MOVIMENTO',
-                resp.data.data
-            );
-        }  
+        await commit(
+            'SET_MOVIMENTO',
+            resp.data.data
+        );
     },
     async deposito ({ commit }, payload) {
-        const resp = await genericService
-            .initialize('movimentos/deposito')
-            .store(payload);
+        const resp = await ApiService.post(
+            'movimentos/deposito',
+            payload    
+        );
 
-        if (resp) {
-            Object.keys(resp.data.data).includes('token') 
+        if (!resp) return;
+
+        Object.keys(resp.data.data).includes('token') 
                 ? commit ('SET_CONTA', resp.data.data)
                 : commit ('SET_MOVIMENTO', resp.data.data); 
-        }
     },
 }

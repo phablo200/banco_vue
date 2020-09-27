@@ -236,7 +236,6 @@ export default {
             } else if (this.confirmar && this.comprovante) {
                 return 'Comprovante de depósito';
             }
-
             return '';
         }
     },
@@ -246,14 +245,9 @@ export default {
         },
 
         async depositar () {
-            const loader=await this.$loading.show({
-                container: this.fullPage ? null : this.$refs.formContainer,
-                canCancel: true,
-                onCancel: this.onCancel,
-            });
-
+            this.showLoading();
             await this.$store.dispatch('movimentos/deposito', this.deposito);
-            loader.hide();
+            this.hideLoading();
         },
 
         async btnProximo () { 

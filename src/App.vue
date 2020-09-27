@@ -30,9 +30,11 @@ export default {
       },
       deep: true
     }
-  }, 
+  },
+
   async created () {
     const token = jwtService.getToken();
+    console.log('_token', token);
     if (!token) {
       const current = `${this.$router.history.current.name}`;
       if (current !== 'login') {

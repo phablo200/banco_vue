@@ -16,7 +16,7 @@
               <h6>
                   Documento: 
                   &nbsp;
-                  <b>{{user.documento}}</b>
+                  <b>{{user.documento | filterCPF}}</b>
               </h6>
             </div>
 
@@ -24,7 +24,7 @@
               <h6>
                 Agência
                 &nbsp;
-                <b>{{user.nu_agencia}}</b>
+                <b>{{ 1611 | filterAgencia}}</b>
               </h6>
             </div>
 

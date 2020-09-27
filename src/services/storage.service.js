@@ -6,11 +6,9 @@ export default {
         } catch (e) {}
         return obj;
     },
-
     setItem (value, key="user") { 
         window.localStorage.setItem(key, JSON.stringify(value));
     },
-    
     destroyItem (key="user") {
         window.localStorage.removeItem(key);
     }

@@ -6,6 +6,7 @@
                     <div class="container-flex-img">
                         <img :src='`${asset}/banco.png`' width='30%' />
                     </div>
+                    
                     <br/>
                     <Error :errors="errors" source="generic" />
                     <div class="container-flex-login-item">
@@ -56,7 +57,7 @@
 
 <script>
 import Error from '@/components/form/Error';
-import { localServer, asset } from '../../src/config';
+import { localServer, asset } from '../src/config';
 import jwtService from '@/services/jwt.service';
 import apiService from '@/services/api.service';
 
@@ -80,13 +81,9 @@ export default {
     },
     methods: {
         async btnLogin () {
-            const loader=await this.$loading.show({
-                container: this.fullPage ? null : this.$refs.formContainer,
-                canCancel: true,
-                onCancel: this.onCancel,
-            });
+            this.showLoading();
             await this.$store.dispatch('login/auth', this.user);
-            
+
             if (!Object.keys(this.errors).length) {            
                 await window.localStorage.setItem(
                     'user', 
@@ -100,7 +97,7 @@ export default {
                 apiService.init();
                 window.location.href = `${localServer}/dashboard`;
             }
-            loader.hide();
+            this.hideLoading();
         },
 
         btnDeposito () {
